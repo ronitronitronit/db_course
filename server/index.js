@@ -1,6 +1,8 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const mysql = require("mysql");
+const cors = require('cors')
 
 const db = mysql.createPool({
   host: "localhost",
@@ -9,13 +11,26 @@ const db = mysql.createPool({
   database: "chicago_tickets",
 });
 
-app.get("/", (req, res) => {
-  const query = "SELECT * FROM Ticket LIMIT 3";
+app.use(express.json())
+app.use(cors())
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get("/api/get/tickets", (req, res) => {
+  const query = "SELECT * FROM Ticket LIMIT";
   db.query(query, (err, result) => {
     if (err) {
-        console.log(err)
+      console.log(err);
     }
-    console.log(result);
+    res.send(result);
+  });
+});
+
+app.get("/api/get/zipcodes", (req, res) => {
+  const query = "SELECT * FROM ZipCode";
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
     res.send(result);
   });
 });
