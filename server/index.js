@@ -16,7 +16,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/api/get/tickets", (req, res) => {
-  const query = "SELECT * FROM Ticket LIMIT";
+  const query = "SELECT * FROM Ticket";
   db.query(query, (err, result) => {
     if (err) {
       console.log(err);
@@ -25,8 +25,17 @@ app.get("/api/get/tickets", (req, res) => {
   });
 });
 
-app.get("/api/get/zipcodes", (req, res) => {
-  const query = "SELECT * FROM ZipCode";
+app.get("/api/get/zipcodes", (req, res) => {console.log('got here!!!')
+  const query = "SELECT * FROM zipcode ORDER BY low_income_ratio ";
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send(result);
+  });
+});
+app.get("/api/get/blorg", (req, res) => {console.log('got here!!!')
+  const query = "SELECT * FROM zipcode ORDER BY low_income_ratio ";
   db.query(query, (err, result) => {
     if (err) {
       console.log(err);
