@@ -70,7 +70,7 @@ function App() {
       lowIncomeRatio * 100
     ).toFixed()}% of tax payers made below $25,000, and there were ${(
       ticketRatio * 100
-    ).toFixed()} parking tickets issued for every 100 residents`;
+    ).toFixed()} parking tickets issued for every 100 residents.`;
   };
 
   useEffect(() => {
