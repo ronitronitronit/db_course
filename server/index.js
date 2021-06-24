@@ -26,7 +26,7 @@ app.get("/api/get/tickets", (req, res) => {
 });
 
 app.get("/api/get/zipcodes", (req, res) => {
-  const query = "SELECT * FROM zipcode ORDER BY low_income_ratio ";
+  const query = "SELECT * FROM ZipCode ORDER BY low_income_ratio ";
   db.query(query, (err, result) => {
     if (err) {
       console.log(err);
